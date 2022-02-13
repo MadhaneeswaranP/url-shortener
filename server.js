@@ -8,7 +8,7 @@ const CONNECTION_URL ='mongodb+srv://madhan:madhan123@cluster0.zw8fo.mongodb.net
 
 mongoose.connect(CONNECTION_URL, {
   useNewUrlParser: true, useUnifiedTopology: true
-})
+}, ()=> console.log('mongodb connected'))
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: false }))
@@ -21,7 +21,6 @@ app.get('/', async (req, res) => {
 
 app.post('/shortUrls', async (req, res) => {
   await ShortUrl.create({ full: req.body.fullUrl })
-
   res.redirect('/')
 })
 
